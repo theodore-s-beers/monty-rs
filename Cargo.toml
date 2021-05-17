@@ -1,0 +1,9 @@
+[package]
+name = "monty"
+version = "0.1.0"
+authors = ["Theo Beers <theo.beers@fu-berlin.de>"]
+edition = "2018"
+
+[dependencies]
+num-format = "0.4.0"
+rand = "0.8.3"

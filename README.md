@@ -1,1 +1,1 @@
-# monty-rs
+# Monty Hall problem simulation
