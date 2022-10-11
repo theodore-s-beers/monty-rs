@@ -1,7 +1,8 @@
 #![warn(clippy::pedantic, clippy::nursery)]
 
 use num_format::{Locale, ToFormattedString};
-use rand::{distributions::Uniform, prelude::*};
+use rand::distributions::Uniform;
+use rand::prelude::*;
 
 fn main() {
     // Set up rng
@@ -24,7 +25,7 @@ fn main() {
     }
 
     println!(
-        "Correct initial guesses out of 10,000: {}",
+        "Correct guesses out of 10,000 (control): {}",
         correct_guesses.to_formatted_string(&Locale::en)
     );
 
@@ -36,21 +37,20 @@ fn main() {
 
         let guess = doors.sample(&mut rng);
 
-        // Eliminate a false door
-        // This does nothing here, of course; just coding for thought process
+        // Prepare to eliminate a false door
+        // This will do nothing here, of course; just coding for thought process
         let _eliminated_door: u8;
 
         loop {
             // Pick a random door. If the initial guess was correct, there are
             // two possibilities for which door to eliminate at this stage.
-            // Should choose between them at random to keep things legit.
+            // We should choose between them at random to keep things legit.
             let possible_elimination = doors.sample(&mut rng);
 
-            // If the random door we just picked isn't the one guessed, or the
-            // true door, select it for elimination, and break loop
+            // If the random door we just picked is neither the one guessed nor the
+            // true door, select it for elimination and break the loop.
             if possible_elimination != true_door && possible_elimination != guess {
-                // Commenting out to appease the compiler
-                // eliminated_door = possible_elimination;
+                _eliminated_door = possible_elimination;
                 break;
             }
         }
@@ -75,17 +75,17 @@ fn main() {
 
         let mut guess = doors.sample(&mut rng);
 
-        // Eliminate a false door
+        // Prepare to eliminate a false door
         let eliminated_door: u8;
 
         loop {
             // Pick a random door. If the initial guess was correct, there are
             // two possibilities for which door to eliminate at this stage.
-            // Should choose between them at random to keep things legit.
+            // We should choose between them at random to keep things legit.
             let possible_elimination = doors.sample(&mut rng);
 
-            // If the random door we just picked isn't the one guessed, or the
-            // true door, select it for elimination, and break loop
+            // If the random door we just picked is neither the one guessed nor the
+            // true door, select it for elimination and break the loop.
             if possible_elimination != true_door && possible_elimination != guess {
                 eliminated_door = possible_elimination;
                 break;
