@@ -1,3 +1,5 @@
+#![warn(clippy::pedantic, clippy::nursery)]
+
 use num_format::{Locale, ToFormattedString};
 use rand::{distributions::Uniform, prelude::*};
 
