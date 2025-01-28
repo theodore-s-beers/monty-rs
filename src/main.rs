@@ -1,15 +1,15 @@
 #![warn(clippy::pedantic, clippy::nursery)]
 
 use num_format::{Locale, ToFormattedString};
-use rand::distributions::Uniform;
+use rand::distr::Uniform;
 use rand::prelude::*;
 
 fn main() {
     // Set up rng
-    let mut rng = thread_rng();
+    let mut rng = rand::rng();
 
     // Create a set of door numbers from which to sample
-    let doors = Uniform::new_inclusive(1, 3);
+    let doors = Uniform::new_inclusive(1, 3).unwrap();
 
     // We'll increment correct guesses as they occur
     let mut correct_guesses = 0;
